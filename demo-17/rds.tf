@@ -16,7 +16,6 @@ resource "aws_db_parameter_group" "mariadb-parameters" {
 
 }
 
-
 resource "aws_db_instance" "mariadb" {
   allocated_storage    = 100    # 100 GB of storage, gives us more IOPS than a lower number
   engine               = "mariadb"
@@ -32,6 +31,7 @@ resource "aws_db_instance" "mariadb" {
   vpc_security_group_ids = ["${aws_security_group.allow-mariadb.id}"]
   storage_type         = "gp2"
   backup_retention_period = 30    # how long you’re going to keep your backups
+  skip_final_snapshot  = true
   availability_zone = "${aws_subnet.main-private-1.availability_zone}"   # prefered AZ
   tags {
       Name = "mariadb-instance"

@@ -16,11 +16,11 @@ resource "aws_security_group" "app-prod" {
       cidr_blocks = ["0.0.0.0/0"]
   } 
 
-
   tags {
     Name = "myinstance"
   }
 }
+
 resource "aws_security_group" "allow-mariadb" {
   vpc_id = "${aws_vpc.main.id}"
   name = "allow-mariadb"
