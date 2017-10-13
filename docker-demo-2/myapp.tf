@@ -58,4 +58,3 @@ resource "aws_ecs_service" "myapp-service" {
   }
   lifecycle { ignore_changes = ["task_definition"] }
 }
-
