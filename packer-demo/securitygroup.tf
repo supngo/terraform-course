@@ -19,4 +19,3 @@ tags {
     Name = "example-instance"
   }
 }
-

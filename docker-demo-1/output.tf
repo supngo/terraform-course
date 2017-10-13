@@ -1,3 +1,3 @@
 output "myapp-repository-URL" {
-  value = "${aws_ecr_repository.myapp.repository_url}"
+  value = "${aws_ecr_repository.simple-web.repository_url}"
 }
