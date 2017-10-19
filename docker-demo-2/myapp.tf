@@ -3,12 +3,12 @@
 data "template_file" "myapp-task-definition-template" {
   template               = "${file("templates/app.json.tpl")}"
   vars {
-    REPOSITORY_URL = "${replace("${aws_ecr_repository.myapp.repository_url}", "https://", "")}"
+    REPOSITORY_URL = "${replace("${aws_ecr_repository.simple-web.repository_url}", "https://", "")}"
   }
 }
 
 resource "aws_ecs_task_definition" "myapp-task-definition" {
-  family                = "myapp"
+  family                = "simple-web"
   container_definitions = "${data.template_file.myapp-task-definition-template.rendered}"
 }
 
@@ -44,7 +44,7 @@ resource "aws_elb" "myapp-elb" {
 }
 
 resource "aws_ecs_service" "myapp-service" {
-  name = "myapp"
+  name = "simple-web"
   cluster = "${aws_ecs_cluster.example-cluster.id}"
   task_definition = "${aws_ecs_task_definition.myapp-task-definition.arn}"
   desired_count = 1
@@ -53,7 +53,7 @@ resource "aws_ecs_service" "myapp-service" {
 
   load_balancer {
     elb_name = "${aws_elb.myapp-elb.name}"
-    container_name = "myapp"
+    container_name = "simple-web"
     container_port = 3000
   }
   lifecycle { ignore_changes = ["task_definition"] }
