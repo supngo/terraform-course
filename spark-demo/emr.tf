@@ -5,15 +5,16 @@ resource "aws_emr_cluster" "tf-test-cluster" {
 
   ec2_attributes {
     subnet_id                         = "${aws_subnet.main.id}"
-    key_name             			  = "${aws_key_pair.mykeypair.key_name}"
+    key_name             			 = "${aws_key_pair.mykeypair.key_name}"
     emr_managed_master_security_group = "${aws_security_group.allow_all.id}"
     emr_managed_slave_security_group  = "${aws_security_group.allow_all.id}"
     instance_profile                  = "${aws_iam_instance_profile.emr_profile.arn}"
+    key_name							 = "${aws_key_pair.mykeypair.key_name}"
   }
 
   master_instance_type = "m4.xlarge"
   core_instance_type   = "c4.2xlarge"
-  core_instance_count  = 10
+  core_instance_count  = 6
 
   tags {
     role     = "rolename"
