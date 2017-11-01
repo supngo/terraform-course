@@ -6,9 +6,9 @@ variable "azs" {
 }
 
 resource "aws_instance" "example" {
-  count = 2
+  count = 1
   ami           = "${lookup(var.AMIS, var.AWS_REGION)}"
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
 
   # the security group
   vpc_security_group_ids = ["${aws_security_group.allow-all.id}"]
