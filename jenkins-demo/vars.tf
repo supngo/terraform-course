@@ -10,7 +10,7 @@ variable "PATH_TO_PUBLIC_KEY" {
 variable "AMIS" {
   type = "map"
   default = {
-    us-east-1 = "ami-c998b6b2"
+    us-east-1 = "ami-8c1be5f6"
     us-east-2 = "ami-cfdafaaa"
     us-west-1 = "ami-66eec506"
   }

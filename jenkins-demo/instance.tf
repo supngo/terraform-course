@@ -18,6 +18,10 @@ resource "aws_instance" "example" {
 
   availability_zone = "${element(var.azs, count.index+1)}"
 
+  provisioner "local-exec" {
+     command = "sudo yum install git"
+  }
+
   tags {
     Name = "docker-${count.index+1}"
   }
